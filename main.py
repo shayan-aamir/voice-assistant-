@@ -22,8 +22,7 @@ def wishMe():
         speak("Good Afternoon!")   
     else:
         speak("Good Evening!") 
-    speak(f"Hello {author}")     
-    speak("I am Your Voice Assistant Sir. Please tell me how may I help you")       
+    speak(f"Hello {author}. I am your Voice Assistant Sir. Please tell me how may I help you.")       
 def takeCommand():
     #It takes microphone input from the user and returns string output
     r = sr.Recognizer()
@@ -36,7 +35,6 @@ def takeCommand():
         query = r.recognize_google(audio, language='en-in')
         print(f"User said: {query}\n")
     except Exception as e:
-        # print(e)    
         print("Say that again please...")  
         return "None"
     return query
@@ -50,9 +48,7 @@ def sendEmail(to, content):
 if __name__ == "__main__":
     wishMe()
     while True:
-    # if 1:
         query = takeCommand().lower()
-        # Logic for executing tasks based on query
         if 'wikipedia' in query:
             speak('Searching Wikipedia...')
             query = query.replace("wikipedia", "")
@@ -62,6 +58,10 @@ if __name__ == "__main__":
             speak(results)
         elif 'open youtube' in query:
             webbrowser.open("youtube.com")
+        elif 'open facebook' in query:
+            webbrowser.open("facebook.com")
+        elif 'open instagram' in query:
+            webbrowser.open("instagram.com")
         elif 'open google' in query:
             webbrowser.open("google.com")
         elif 'open stack overflow' in query:
@@ -86,6 +86,6 @@ if __name__ == "__main__":
                 speak("Email has been sent!")
             except Exception as e:
                 print(e)
-                speak("Sorry my friend harry bhai. I am not able to send this email")    
+                speak("Sorry my friend. I am not able to send this email")    
         else:
             print("No query matched")
